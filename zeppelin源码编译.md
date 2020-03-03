@@ -47,6 +47,9 @@ source /etc/profile
       <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
       <mirrorOf>central</mirrorOf>
     </mirror>
+    
+配置本地仓库：
+    <localRepository>F:\MyRepository_maven</localRepository>
 ```
 
 ### 安装git
@@ -84,19 +87,23 @@ npm install -g bower
 ```
 ##添加普通用户
 useradd zeppelin
+飞腾：
+adduser zeppelin //按照提示进行即可
 su zeppelin
+切换到普通用户时root安装的软件 普通用户无法使用  修改普通用户家目录下的.bashrc文件
 cd /home/zeppelin解压zeppelin0.8.0版本
 ```
 
 ```
 ##首先在zeppelin-web编译看看能不能成功
-mvn clean package -DskipTests
+跳过checkstyle   加上-Dcheckstyle.skip=true
+mvn clean package -DskipTests -Dcheckstyle.skip=true
 ##成功后 cd .. 进行项目编译。
 ##在编译过程中会下载很多东西  耐心等待  
 
 ```
 
-![image-20200220114131132](C:\Users\evelynnn\AppData\Roaming\Typora\typora-user-images\image-20200220114131132.png)
+![image-20200220114131132](images/image-20200220114131132.png)
 
 ## 遇到的问题：
 
@@ -113,8 +120,11 @@ phantomjs_cdnurl = https://npm.taobao.org/mirrors/phantomjs/
 
 git config --global url."https://".insteadOf git:*//*
 
-mvn clean     清除目标目录中的生成结果
+mvn clean     清除目标目录中的生成结果分
 
+### 2 飞腾找不到 phantomjs对应的arrch64版本的问题
 
+![image-20200227110318137](images/image-20200227110318137.png)
 
-breeze_2.11-0.13.1.jar
+去github上找网友编译好的版本，（phantomjs_2.1.1_arm64.tgz）解压到目录，并设置软连接到/usr/local/bin 或者/usr/bin 和设置环境变量 添加path。
+
